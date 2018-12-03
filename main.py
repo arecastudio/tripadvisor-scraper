@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
-url="https://www.tripadvisor.com/SmartDeals-g255055-Australia-Hotel-Deals.html"
+url="https://www.tripadvisor.com/Hotels-g255055-Australia-Hotels.html"
 
 
 def scraper(link):
@@ -21,9 +21,10 @@ def scraper(link):
 
 def getlinks(link):
     #print("apa kabar")
-    myreg=requests.get(link).text
-    soup=BeautifulSoup(myreg,'lxml')
-    pagenum=soup.find('div',class_='unified ui_pagination standard_pagination ui_section listFooter')
-    print(pagenum)
+    req=requests.get(link).text
+    soups=BeautifulSoup(req,'lxml')
+    panu=soups.find('div',class_='unified ui_pagination standard_pagination ui_section listFooter').get('data-numpages')
+    #pnum=pagenum.text.get('data-numpages')
+    print(panu)
 
 getlinks(url)
